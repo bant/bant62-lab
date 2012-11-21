@@ -22,7 +22,7 @@
 
 // 関数プロトタイプ
 extern void xmit(uint8_t);
-extern void xmitstr(const prog_char *);
+extern void xmitstr_p(const char *);
 extern void xmitline( char *);
 extern uint8_t read();
 extern uint8_t xread();
