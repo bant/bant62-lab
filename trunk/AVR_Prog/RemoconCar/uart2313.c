@@ -29,7 +29,7 @@ void xmit(uint8_t ch)
 void xmit_hex(uint8_t chr)
 {
     uint8_t wk;
-//  xmitstr(PSTR("0x"));
+//  xmitstr_p(PSTR("0x"));
     wk = chr /16;
     if (wk >9 ) xmit(wk + 0x37);
     else xmit(wk + 0x30);
@@ -49,7 +49,7 @@ void xmit_dec(uint16_t chr)
     xmit(d1+0x30);
 }
 
-void xmitstr(const prog_char *s)
+void xmitstr_p(const char *s)
 {
     char c;
     while ((c=pgm_read_byte(s++))!=0) xmit(c);
@@ -68,7 +68,7 @@ void uart2313_init(void)
     UCSRC = 3<<UCSZ0 ;      //8bit frame size non parity 1stop bit
 }
 
-ISR(SIG_USART0_RECV)
+ISR(USART_RX_vect)
 {
     return;    // to wake up from sleep
 }

@@ -545,12 +545,12 @@ void timer1_init(void)
 #if IR_USE_XMIT
 void xmit_remocon_send(void)
 {
-    xmitstr(PSTR("0x"));
+    xmitstr_p(PSTR("0x"));
     xmit_hex(DispRemData.DATA_BYTE[0]);
     xmit_hex(DispRemData.DATA_BYTE[1]);
     xmit_hex(DispRemData.DATA_BYTE[2]);
     xmit_hex(DispRemData.DATA_BYTE[3]);
-    xmitstr(PSTR("\n\r"));
+    xmitstr_p(PSTR("\n\r"));
 }
 #endif
 
@@ -609,7 +609,7 @@ int main(void)
     sei();          // ëSëÃäÑçûãñâ¬
 
 #if IR_USE_XMIT
-    xmitstr(PSTR("Ready OK\n\r"));
+    xmitstr_p(PSTR("Ready OK\n\r"));
 #endif
 
     while (1)
@@ -620,7 +620,7 @@ int main(void)
             {
                 flag = MAKER_CODE_ERROR;
 #if IR_USE_XMIT
-                xmitstr(PSTR("Maker Code ERR - "));
+                xmitstr_p(PSTR("Maker Code ERR - "));
                 xmit_remocon_send();
 #endif
                 remocon_reset();
@@ -639,7 +639,7 @@ int main(void)
                     motor2_stop();
                     motor2_forward();
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Left - "));
+                    xmitstr_p(PSTR("Left - "));
 #endif
                     break;
 
@@ -649,7 +649,7 @@ int main(void)
                     motor1_reverse();
                     motor2_forward();
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Left turn - "));
+                    xmitstr_p(PSTR("Left turn - "));
 #endif
                     break;
 
@@ -658,7 +658,7 @@ int main(void)
                     motor2_stop();
                     motor1_reverse();
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Left Back - "));
+                    xmitstr_p(PSTR("Left Back - "));
 #endif
                     break;
 
@@ -668,7 +668,7 @@ int main(void)
                     motor2_stop();
                     motor1_forward();
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Right - "));
+                    xmitstr_p(PSTR("Right - "));
 #endif
                     break;
 
@@ -678,7 +678,7 @@ int main(void)
                     motor1_forward();
                     motor2_reverse();
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Right turn - "));
+                    xmitstr_p(PSTR("Right turn - "));
 #endif
                     break;
 
@@ -687,7 +687,7 @@ int main(void)
                     motor2_stop();
                     motor2_reverse();
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Right Back - "));
+                    xmitstr_p(PSTR("Right Back - "));
 #endif
                     break;
 
@@ -697,7 +697,7 @@ int main(void)
                     motor1_forward();
                     motor2_forward();
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Forward - "));
+                    xmitstr_p(PSTR("Forward - "));
 #endif
                     break;
 
@@ -707,7 +707,7 @@ int main(void)
                     motor1_reverse();
                     motor2_reverse();
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Back - "));
+                    xmitstr_p(PSTR("Back - "));
 #endif
                     break;
 
@@ -715,7 +715,7 @@ int main(void)
                     motor1_brake();
                     motor2_brake();
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Brake - "));
+                    xmitstr_p(PSTR("Brake - "));
 #endif
                     remocon_reset();
                     break;
@@ -724,14 +724,14 @@ int main(void)
                     motor1_stop();
                     motor2_stop();
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Brake - "));
+                    xmitstr_p(PSTR("Brake - "));
 #endif
                     remocon_reset();
                     break;
 
                 default:
 #if IR_USE_XMIT
-                    xmitstr(PSTR("Not Assign Code - "));
+                    xmitstr_p(PSTR("Not Assign Code - "));
 #endif
                     break;
                 }
@@ -743,7 +743,7 @@ int main(void)
             {
                 flag = REPEAT_DATA;
 #if IR_USE_XMIT
-                xmitstr(PSTR("Repeat Data - "));
+                xmitstr_p(PSTR("Repeat Data - "));
                 xmit_remocon_send();
 #endif
             }
@@ -756,7 +756,7 @@ int main(void)
             flag = REQ_DATA;
             ReqFlag.DispFormat = 0;
 #if IR_USE_XMIT
-            xmitstr(PSTR("Request OK\n\r"));
+            xmitstr_p(PSTR("Request OK\n\r"));
 #endif
         }
 
@@ -765,7 +765,7 @@ int main(void)
             flag = RECEIVE_ERR_DATA;
             ReqFlag.ErrDisp = 0;
 #if IR_USE_XMIT
-            xmitstr(PSTR("Receive Data ERR\n\r"));
+            xmitstr_p(PSTR("Receive Data ERR\n\r"));
 #endif
             remocon_reset();
         }
