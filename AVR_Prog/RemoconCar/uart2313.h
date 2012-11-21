@@ -20,7 +20,7 @@
 
 // 関数プロトタイプ
 void xmit(uint8_t);
-void xmitstr(const prog_char *);
+void xmitstr_p(const char *);
 void xmitline( char *);
 uint8_t read(void);
 uint8_t xread();
