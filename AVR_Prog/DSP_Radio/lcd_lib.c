@@ -5,7 +5,7 @@
 // Revision     : 0.1
 // Notes        :
 // Target MCU   : Atmel AVR series
-// Tool Chain   : 
+// Tool Chain   : AVR toolchain Ver3.4.1.1195 
 //
 // Revision History:
 // When         Who         Description of change

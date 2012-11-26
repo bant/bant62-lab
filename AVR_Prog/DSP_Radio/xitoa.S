@@ -78,14 +78,14 @@ xputc:
 ;---------------------------------------------------------------------------
 ; Direct ROM string output
 ;
-;Prototype: void xputs (const prog_char *str // rom string to be output
+;Prototype: void xputs_p (const char *str // rom string to be output
 ;			);
 ;Size: 10/7 words
 
 #ifdef USE_XPUTS
-.global xputs
-.func xputs
-xputs:
+.global xputs_p
+.func xputs_p
+xputs_p:
 	_MOVW	ZH,ZL, r25,r24	; Z = pointer to rom string
 1:	_LPMI	r24
 	cpi	r24, 0
@@ -183,7 +183,7 @@ xitoa:
 ; Formatted string output (16/32bit version)
 ;
 ;Prototype:
-; void xprintf (const prog_char *format, ...);
+; void xprintf (const char *format, ...);
 ;Size: 104/94 words
 ;
 
@@ -296,7 +296,7 @@ xprintf:
 
 60:	push	ZH		;Put a string on the ROM
 	push	ZL
-	rcall	xputs
+	rcall	xputs_p
 	rjmp	42b
 
 .endfunc
