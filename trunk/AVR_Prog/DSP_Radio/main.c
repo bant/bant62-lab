@@ -5,13 +5,14 @@
 // Revision     : 0.1
 // Notes        :
 // Target MCU   : Atmel AVR series ATMega328p
-// Tool Chain   :
+// Tool Chain   : AVR toolchain Ver3.4.1.1195
 //
 // Revision History:
 // When         Who         Description of change
 // -----------  ----------- -----------------------
 // 2012/08/11   ばんと      開発開始
 // 2012/08/20   ばんと      Ver0.1完了
+// 2012/11/25   ばんと      AVR toolchain Ver3.4.1.1195に対応
 //=============================================================================
 //
 //【FUSE】
@@ -269,12 +270,12 @@ static void toggle_mute(void)
     if ( is_mute )
     {
         LED_ON();
-        xputs(PSTR("MUTE ON.\n"));
+        xputs_p(PSTR("MUTE ON.\n"));
     }
     else
     {
         LED_OFF();
-        xputs(PSTR("MUTE OFF.\n"));
+        xputs_p(PSTR("MUTE OFF.\n"));
     }
 }
 
@@ -488,7 +489,7 @@ static void ir_in ( void )
 
     case NEC|REPT:  /* NEC repeat frame */
 #if debug
-        xputs(PSTR("Recieve NEC CODE:[repeat]\n"));
+        xputs_p(PSTR("Recieve NEC CODE:[repeat]\n"));
 #endif
         break;
     }
@@ -604,7 +605,7 @@ int main(void)
     NS9542_Starting( channel.band, channel.freq, 0 );
     lcd_disp_ch();
 
-    xputs(PSTR("Radio control program ver 0.1\n"));
+    xputs_p(PSTR("Radio control program ver 0.1\n"));
 
     while(1)
     {
@@ -622,12 +623,12 @@ int main(void)
         {
             if(xatoi(&words[1], &tmp)==0)
             {
-                xputs(PSTR("FREQ ERROR\n"));
+                xputs_p(PSTR("FREQ ERROR\n"));
                 continue;
             }
             if (words[2] == NULL)
             {
-                xputs(PSTR("STATION NAME ERROR!\n"));
+                xputs_p(PSTR("STATION NAME ERROR!\n"));
                 continue;
             }
 
@@ -641,7 +642,7 @@ int main(void)
             }
             else
             {
-                xputs(PSTR("FREQ ERROR!\n"));
+                xputs_p(PSTR("FREQ ERROR!\n"));
                 continue;
             }
 
@@ -650,7 +651,7 @@ int main(void)
 
             if ( (ch_no =eep_save(&channel)) == -1 )
             {
-                xputs(PSTR("EEPROM SAVE ERROR!\n"));
+                xputs_p(PSTR("EEPROM SAVE ERROR!\n"));
                 continue;
             }
             else
@@ -679,14 +680,14 @@ int main(void)
                 is_mute = true;          // ミュートON
                 NS9542_mute( is_mute );
                 LED_ON();
-                xputs(PSTR("MUTE ON.\n"));
+                xputs_p(PSTR("MUTE ON.\n"));
             }
             else if (strcmp(words[1],"OFF")==0)
             {
                 is_mute = false;        // ミュートOff
                 NS9542_mute( is_mute );
                 LED_OFF();
-                xputs(PSTR("MUTE OFF.\n"));
+                xputs_p(PSTR("MUTE OFF.\n"));
             }
         }
         else if (strcmp(words[0],"CLEAR")==0)
@@ -700,11 +701,11 @@ int main(void)
                 strcpy(channel.name, "NHK-R1");
                 ch_no = 1;
                 lcd_no = 1;
-                xputs(PSTR("CLEAR OK!\n"));
+                xputs_p(PSTR("CLEAR OK!\n"));
             }
             else
             {
-                xputs(PSTR("EEPROM CLEAR ERROR!\n"));
+                xputs_p(PSTR("EEPROM CLEAR ERROR!\n"));
             }
         }
     }

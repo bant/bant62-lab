@@ -5,7 +5,7 @@
 // Revision     : 0.1
 // Notes        :
 // Target MCU   : AVR ATMega328
-// Tool Chain   :
+// Tool Chain   : AVR toolchain Ver3.4.1.1195
 //
 // Revision History:
 // When         Who         Description of change
@@ -289,7 +289,7 @@ void NS9542_imf_adjust( void )
 
 void NS9542_dsp_align_body( void )
 {
-    uint8_t iml, imf, ialgn, cnt, fp, fg;
+    uint8_t iml, ialgn, cnt, fp, fg;
     uint8_t fine_p[5] = { 0, 0, 0, 0, 0 };
     uint8_t fine_g[5] = { 0, 0, 0, 0, 0 };
 
@@ -302,7 +302,6 @@ void NS9542_dsp_align_body( void )
 
         NS9542_best_iml( iml );
 
-        imf = 0;
         cnt = 0;
         fp = 0;
         fg = 0;
