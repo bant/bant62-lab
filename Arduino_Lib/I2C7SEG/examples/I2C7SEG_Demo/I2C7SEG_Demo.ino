@@ -1,3 +1,16 @@
+//==================================================================
+// File Name    : I2C7SEG_Demo.ino
+//
+// Title        : Arduino I2C7SEG デモスケッチ
+// Revision     : 0.1
+// Notes        : I2C7SEG に英数文字を表示させるデモ
+//
+// Revision History:
+// When         Who         Description of change
+// -----------  ----------- -----------------------
+// 2012/12/1    ばんと      作成
+//==================================================================
+
 #include <Wire.h>
 #include <I2C7SEG.h>
 
@@ -11,6 +24,7 @@ void setup()
 
 void loop()
 {
+    // 数字表示
     I2c7seg.printChar('1');
     delay(500);
     I2c7seg.printChar('2');
@@ -28,6 +42,7 @@ void loop()
     I2c7seg.printChar('8');
     delay(500);
 
+    // ローテート
     delay(500);
     I2c7seg.rotato_right();
     delay(500);
@@ -46,6 +61,7 @@ void loop()
     I2c7seg.rotato_right();
     delay(500);
 
+    // ドット表示
     I2c7seg.rotato_left();
     I2c7seg.printChar('.');
     delay(500);
@@ -90,6 +106,7 @@ void loop()
 
     I2c7seg.clear();
 
+    // アルファベット表示
     I2c7seg.printChar('a');
     delay(500);
     I2c7seg.printChar('b');
