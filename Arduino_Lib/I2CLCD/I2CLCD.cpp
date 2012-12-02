@@ -4,182 +4,189 @@ extern "C"
 #include <string.h>
 #include <inttypes.h>
 }
-#include <WConstants.h>
-#include <Wire.h>
+
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
+
 #include "I2CLCD.h"
 
-#define I2CLCD_SLAVE_ADRS (0x64 >> 1)
-
 // Constructors ////////////////////////////////////////////////////////////////
-I2CLCD::I2CLCD()
+I2CLCD::I2CLCD(void)
 {
+    address = I2CLCD_SLAVE_ADRS;
 }
 
-// Public Methods //////////////////////////////////////////////////////////////
-
-void I2CLCD::begin(void)
+I2CLCD::I2CLCD(int set_address)
 {
-    Wire.begin();
+    address = set_address;
+}
+
+// Destructor //////////////////////////////////////////////////////////////////
+I2CLCD::~I2CLCD(void) 
+{
+  //  Serial.print("Deleted file I2C7SEG");
 }
 
 void I2CLCD::gotoCursor(uint8_t x, uint8_t y)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('L');
-    Wire.send(x);
-    Wire.send(y);
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('L');
+    write(x);
+    write(y);
+    endTransmission();
 }
 
 void I2CLCD::home(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('H');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('H');
+    endTransmission();
 }
 
 void I2CLCD::clear(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('C');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('C');
+    endTransmission();
 }
 
 void I2CLCD::saveCustomCharacter(uint8_t romCharNum, uint8_t lcdCharData[])
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('S');
-    Wire.send(romCharNum);
+    beginTransmission(address);
+    write(ESC);
+    write('S');
+    write(romCharNum);
     for (int i=0; i<8;i++)
     {
-        Wire.send(lcdCharData[i]);
+        write(lcdCharData[i]);
     }
-    Wire.endTransmission();
+    endTransmission();
     delay(100);
 }
 
 void I2CLCD::mapCustomCharacter(uint8_t romCharNum, uint8_t lcdCharNum)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('M');
-    Wire.send(romCharNum);
-    Wire.send(lcdCharNum);
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('M');
+    write(romCharNum);
+    write(lcdCharNum);
+    endTransmission();
 }
 
 //   ESC'X'      .... 画面非表示
 void I2CLCD::offDisplay(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('X');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('X');
+    endTransmission();
 }
 
-//	ESC'N'      .... 画面表示・カーソル消去
+//  ESC'N'      .... 画面表示・カーソル消去
 void I2CLCD::onDisplay(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('N');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('N');
+    endTransmission();
 }
 
-//	ESC'B'      .... 画面表示・カーソル非表示・文字ブリンク
+//  ESC'B'      .... 画面表示・カーソル非表示・文字ブリンク
 void I2CLCD::blinkCharacter(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('B');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('B');
+    endTransmission();
 }
 
 //    ESC'D'      .... 画面表示・カーソル表示
 void I2CLCD::dispCursor(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('D');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('D');
+    endTransmission();
 }
 
 //    ESC'E'      .... 画面表示・カーソル表示・文字ブリンク
 void I2CLCD::blinkCursor(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('E');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('E');
+    endTransmission();
 }
 
-//	ESC'N'      .... 画面表示・カーソル消去
+//  ESC'N'      .... 画面表示・カーソル消去
 void I2CLCD::hideCursor(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('N');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('N');
+    endTransmission();
 }
 
 //    ESC'-'      .... カーソル左移動
 void I2CLCD::moveLeftCursor(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('-');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('-');
+    endTransmission();
 }
 
-//	ESC'+'      .... カーソル右移動
+//  ESC'+'      .... カーソル右移動
 void I2CLCD::moveRightCursor(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('+');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('+');
+    endTransmission();
 }
 
-//	ESC'<'      .... 画面左移動
+//  ESC'<'      .... 画面左移動
 void I2CLCD::moveLeftDisplay(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('<');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('<');
+    endTransmission();
 }
 
-//	ESC'>'      .... 画面右移動
+//  ESC'>'      .... 画面右移動
 void I2CLCD::moveRightDisplay(void)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(ESC);
-    Wire.send('>');
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(ESC);
+    write('>');
+    endTransmission();
 }
 
 // 一文字表示
 void I2CLCD::printChar(uint8_t chr)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
-    Wire.send(chr);
-    Wire.endTransmission();
+    beginTransmission(address);
+    write(chr);
+    endTransmission();
 }
 
 // 文字列表示
 void I2CLCD::printStr(char *str)
 {
-    Wire.beginTransmission(I2CLCD_SLAVE_ADRS);
+    beginTransmission(address);
     for (int i = 0; i < strlen(str); i++ )
     {
-        Wire.send(str[i]);
+        write(str[i]);
     }
-    Wire.endTransmission();
+    endTransmission();
 }
 
-
-I2CLCD I2clcd;
+//I2CLCD I2clcd;
