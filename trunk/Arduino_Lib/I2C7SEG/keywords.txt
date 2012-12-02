@@ -1,0 +1,39 @@
+#######################################
+# Syntax Coloring Map For I2C7SEG
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+I2C7SEG	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+gotoCursor	KEYWORD2
+home	KEYWORD2
+clear	KEYWORD2
+saveCustomCharacter	KEYWORD2
+mapCustomCharacter	KEYWORD2
+offDisplay	KEYWORD2
+onDisplay	KEYWORD2
+blinkCharacter	KEYWORD2
+dispCursor	KEYWORD2
+blinkCursor	KEYWORD2
+hideCursor	KEYWORD2
+moveLeftCursor	KEYWORD2
+moveRightCursor	KEYWORD2
+moveLeftDisplay	KEYWORD2
+moveRightDisplay	KEYWORD2
+printChar	KEYWORD2
+printStr	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
