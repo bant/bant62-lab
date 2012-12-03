@@ -13,9 +13,9 @@ private:
     int address;
 
 public:
-    I2C7SEG(void);
+    I2C7SEG();
     I2C7SEG(int address);
-    ~I2C7SEG(void);     // destructor
+    ~I2C7SEG();     // destructor
     void clear(void);
     void shift_left(void);
     void shift_right(void);
