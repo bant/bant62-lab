@@ -14,7 +14,7 @@ extern "C"
 #include "I2CLCD.h"
 
 // Constructors ////////////////////////////////////////////////////////////////
-I2CLCD::I2CLCD(void)
+I2CLCD::I2CLCD()
 {
     address = I2CLCD_SLAVE_ADRS;
 }
@@ -25,9 +25,8 @@ I2CLCD::I2CLCD(int set_address)
 }
 
 // Destructor //////////////////////////////////////////////////////////////////
-I2CLCD::~I2CLCD(void) 
+I2CLCD::~I2CLCD()
 {
-  //  Serial.print("Deleted file I2C7SEG");
 }
 
 void I2CLCD::gotoCursor(uint8_t x, uint8_t y)

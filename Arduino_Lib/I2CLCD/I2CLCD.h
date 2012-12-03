@@ -13,9 +13,9 @@ private:
     int address;
 
 public:
-    I2CLCD(void);
+    I2CLCD();
     I2CLCD(int set_address);
-    ~I2CLCD(void);     // destructor
+    ~I2CLCD();     // destructor
     void gotoCursor(uint8_t x, uint8_t y);
     void home(void);
     void clear(void);
