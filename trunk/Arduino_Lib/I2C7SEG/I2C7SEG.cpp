@@ -14,7 +14,7 @@ extern "C"
 #include "I2C7SEG.h"
 
 // Constructors ////////////////////////////////////////////////////////////////
-I2C7SEG::I2C7SEG(void)
+I2C7SEG::I2C7SEG()
 {
     address = I2C7SEG_SLAVE_ADRS;
 }
@@ -25,13 +25,11 @@ I2C7SEG::I2C7SEG(int set_address)
 }
 
 // Destructor //////////////////////////////////////////////////////////////////
-I2C7SEG::~I2C7SEG(void) 
+I2C7SEG::~I2C7SEG()
 {
-  //  Serial.print("Deleted file I2C7SEG");
 }
 
 // Public Methods //////////////////////////////////////////////////////////////
-
 void I2C7SEG::clear(void)
 {
     beginTransmission(address);
