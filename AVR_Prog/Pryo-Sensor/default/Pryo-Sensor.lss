@@ -1,0 +1,461 @@
+
+Pryo-Sensor.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001e6  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  000001e6  0000027a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000003  00800060  00800060  0000027a  2**0
+                  ALLOC
+  3 .stab         000006b4  00000000  00000000  0000027c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000930  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000088  00000000  00000000  000009b8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000004ef  00000000  00000000  00000a40  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000001ba  00000000  00000000  00000f2f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000338  00000000  00000000  000010e9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000a4  00000000  00000000  00001424  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000167  00000000  00000000  000014c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000000eb  00000000  00000000  0000162f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000018  00000000  00000000  0000171a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2a c0       	rjmp	.+84     	; 0x58 <__bad_interrupt>
+   4:	29 c0       	rjmp	.+82     	; 0x58 <__bad_interrupt>
+   6:	52 c0       	rjmp	.+164    	; 0xac <__vector_3>
+   8:	27 c0       	rjmp	.+78     	; 0x58 <__bad_interrupt>
+   a:	26 c0       	rjmp	.+76     	; 0x58 <__bad_interrupt>
+   c:	29 c0       	rjmp	.+82     	; 0x60 <__vector_6>
+   e:	24 c0       	rjmp	.+72     	; 0x58 <__bad_interrupt>
+  10:	23 c0       	rjmp	.+70     	; 0x58 <__bad_interrupt>
+  12:	22 c0       	rjmp	.+68     	; 0x58 <__bad_interrupt>
+  14:	21 c0       	rjmp	.+66     	; 0x58 <__bad_interrupt>
+  16:	20 c0       	rjmp	.+64     	; 0x58 <__bad_interrupt>
+  18:	1f c0       	rjmp	.+62     	; 0x58 <__bad_interrupt>
+  1a:	1e c0       	rjmp	.+60     	; 0x58 <__bad_interrupt>
+  1c:	1d c0       	rjmp	.+58     	; 0x58 <__bad_interrupt>
+  1e:	1c c0       	rjmp	.+56     	; 0x58 <__bad_interrupt>
+  20:	1b c0       	rjmp	.+54     	; 0x58 <__bad_interrupt>
+  22:	1a c0       	rjmp	.+52     	; 0x58 <__bad_interrupt>
+  24:	19 c0       	rjmp	.+50     	; 0x58 <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf ed       	ldi	r28, 0xDF	; 223
+  2c:	cd bf       	out	0x3d, r28	; 61
+
+0000002e <__do_copy_data>:
+  2e:	10 e0       	ldi	r17, 0x00	; 0
+  30:	a0 e6       	ldi	r26, 0x60	; 96
+  32:	b0 e0       	ldi	r27, 0x00	; 0
+  34:	e6 ee       	ldi	r30, 0xE6	; 230
+  36:	f1 e0       	ldi	r31, 0x01	; 1
+  38:	02 c0       	rjmp	.+4      	; 0x3e <__SP_H__>
+  3a:	05 90       	lpm	r0, Z+
+  3c:	0d 92       	st	X+, r0
+  3e:	a0 36       	cpi	r26, 0x60	; 96
+  40:	b1 07       	cpc	r27, r17
+  42:	d9 f7       	brne	.-10     	; 0x3a <__CCP__+0x6>
+
+00000044 <__do_clear_bss>:
+  44:	10 e0       	ldi	r17, 0x00	; 0
+  46:	a0 e6       	ldi	r26, 0x60	; 96
+  48:	b0 e0       	ldi	r27, 0x00	; 0
+  4a:	01 c0       	rjmp	.+2      	; 0x4e <.do_clear_bss_start>
+
+0000004c <.do_clear_bss_loop>:
+  4c:	1d 92       	st	X+, r1
+
+0000004e <.do_clear_bss_start>:
+  4e:	a3 36       	cpi	r26, 0x63	; 99
+  50:	b1 07       	cpc	r27, r17
+  52:	e1 f7       	brne	.-8      	; 0x4c <.do_clear_bss_loop>
+  54:	93 d0       	rcall	.+294    	; 0x17c <main>
+  56:	c5 c0       	rjmp	.+394    	; 0x1e2 <_exit>
+
+00000058 <__bad_interrupt>:
+  58:	d3 cf       	rjmp	.-90     	; 0x0 <__vectors>
+
+0000005a <io_init>:
+****************************************/
+void io_init(void)
+{
+    // LED の設定
+    // ポート B0 B1を出力に設定
+    DDRB |= (1<<PB1);          // ポート B1  を出力設定
+  5a:	b9 9a       	sbi	0x17, 1	; 23
+
+    // 赤外線センサ設定
+    // ポート D6を入力に設定
+    DDRD &= ~(1 << PD6);
+  5c:	8e 98       	cbi	0x11, 6	; 17
+}
+  5e:	08 95       	ret
+
+00000060 <__vector_6>:
+
+/****************************************
+* タイマー0オーバーフロー割込           *
+*****************************************/
+ISR( TIMER0_OVF_vect )
+{
+  60:	1f 92       	push	r1
+  62:	0f 92       	push	r0
+  64:	0f b6       	in	r0, 0x3f	; 63
+  66:	0f 92       	push	r0
+  68:	11 24       	eor	r1, r1
+  6a:	8f 93       	push	r24
+  6c:	9f 93       	push	r25
+    if ( pryo_count != 0)
+  6e:	80 91 61 00 	lds	r24, 0x0061
+  72:	90 91 62 00 	lds	r25, 0x0062
+  76:	00 97       	sbiw	r24, 0x00	; 0
+  78:	49 f0       	breq	.+18     	; 0x8c <__vector_6+0x2c>
+    {
+        pryo_count--;
+  7a:	80 91 61 00 	lds	r24, 0x0061
+  7e:	90 91 62 00 	lds	r25, 0x0062
+  82:	01 97       	sbiw	r24, 0x01	; 1
+  84:	90 93 62 00 	sts	0x0062, r25
+  88:	80 93 61 00 	sts	0x0061, r24
+    }
+
+    if (pryo_count == 0)
+  8c:	80 91 61 00 	lds	r24, 0x0061
+  90:	90 91 62 00 	lds	r25, 0x0062
+  94:	00 97       	sbiw	r24, 0x00	; 0
+  96:	11 f4       	brne	.+4      	; 0x9c <__vector_6+0x3c>
+    {
+        LED_OFF();
+  98:	c1 9a       	sbi	0x18, 1	; 24
+  9a:	01 c0       	rjmp	.+2      	; 0x9e <__vector_6+0x3e>
+
+    }
+    else
+    {
+        LED_ON();
+  9c:	c1 98       	cbi	0x18, 1	; 24
+    }
+
+}
+  9e:	9f 91       	pop	r25
+  a0:	8f 91       	pop	r24
+  a2:	0f 90       	pop	r0
+  a4:	0f be       	out	0x3f, r0	; 63
+  a6:	0f 90       	pop	r0
+  a8:	1f 90       	pop	r1
+  aa:	18 95       	reti
+
+000000ac <__vector_3>:
+
+/****************************************
+* タイマー1割込(カウントキャプチャー)   *
+****************************************/
+ISR( TIMER1_CAPT_vect )
+{
+  ac:	1f 92       	push	r1
+  ae:	0f 92       	push	r0
+  b0:	0f b6       	in	r0, 0x3f	; 63
+  b2:	0f 92       	push	r0
+  b4:	11 24       	eor	r1, r1
+  b6:	2f 93       	push	r18
+  b8:	8f 93       	push	r24
+  ba:	9f 93       	push	r25
+    uint16_t PulseWidth;
+
+    PulseWidth = ICR1;          // カウント値の読み取り
+  bc:	84 b5       	in	r24, 0x24	; 36
+  be:	95 b5       	in	r25, 0x25	; 37
+    TCNT1 = 0x0000;             // カウンタ値のクリア
+  c0:	1d bc       	out	0x2d, r1	; 45
+  c2:	1c bc       	out	0x2c, r1	; 44
+
+    switch ( PryoState )
+  c4:	20 91 60 00 	lds	r18, 0x0060
+  c8:	22 23       	and	r18, r18
+  ca:	19 f0       	breq	.+6      	; 0xd2 <__vector_3+0x26>
+  cc:	21 30       	cpi	r18, 0x01	; 1
+  ce:	71 f5       	brne	.+92     	; 0x12c <__stack+0x4d>
+  d0:	09 c0       	rjmp	.+18     	; 0xe4 <__stack+0x5>
+    {
+    case WAVE_FALL:
+        if (bit_is_clear(PIND,PIND6))       // (負論理)立ち下がりエッジ検出
+  d2:	86 99       	sbic	0x10, 6	; 16
+  d4:	30 c0       	rjmp	.+96     	; 0x136 <__stack+0x57>
+        {
+            IR_CAPT_RISE();                 // 立ち上がり駆動に変更
+  d6:	8e b5       	in	r24, 0x2e	; 46
+  d8:	80 64       	ori	r24, 0x40	; 64
+  da:	8e bd       	out	0x2e, r24	; 46
+            PryoState = WAVE_RISE;
+  dc:	81 e0       	ldi	r24, 0x01	; 1
+  de:	80 93 60 00 	sts	0x0060, r24
+  e2:	29 c0       	rjmp	.+82     	; 0x136 <__stack+0x57>
+        }
+        break;
+
+    case WAVE_RISE:
+        if ( bit_is_set(PIND, PIND6) )      // (負論理)立ち上がりエッジ検出(リーダーのキャリア停止)
+  e4:	86 9b       	sbis	0x10, 6	; 16
+  e6:	27 c0       	rjmp	.+78     	; 0x136 <__stack+0x57>
+        {
+            IR_CAPT_FALL();                 // 立ち下がり駆動に変更(ICPの検出エッジをL)
+  e8:	2e b5       	in	r18, 0x2e	; 46
+  ea:	2f 7b       	andi	r18, 0xBF	; 191
+  ec:	2e bd       	out	0x2e, r18	; 46
+            PryoState = WAVE_FALL;          // はじめに戻す
+  ee:	10 92 60 00 	sts	0x0060, r1
+            if (PulseWidth > 1520)          // 約50mS以上の信号
+  f2:	25 e0       	ldi	r18, 0x05	; 5
+  f4:	81 3f       	cpi	r24, 0xF1	; 241
+  f6:	92 07       	cpc	r25, r18
+  f8:	f0 f0       	brcs	.+60     	; 0x136 <__stack+0x57>
+            {
+                pryo_count += 32*10;
+  fa:	80 91 61 00 	lds	r24, 0x0061
+  fe:	90 91 62 00 	lds	r25, 0x0062
+ 102:	80 5c       	subi	r24, 0xC0	; 192
+ 104:	9e 4f       	sbci	r25, 0xFE	; 254
+ 106:	90 93 62 00 	sts	0x0062, r25
+ 10a:	80 93 61 00 	sts	0x0061, r24
+                if (pryo_count > 32*60)
+ 10e:	80 91 61 00 	lds	r24, 0x0061
+ 112:	90 91 62 00 	lds	r25, 0x0062
+ 116:	27 e0       	ldi	r18, 0x07	; 7
+ 118:	81 38       	cpi	r24, 0x81	; 129
+ 11a:	92 07       	cpc	r25, r18
+ 11c:	60 f0       	brcs	.+24     	; 0x136 <__stack+0x57>
+                {
+                    pryo_count = 32*60;
+ 11e:	80 e8       	ldi	r24, 0x80	; 128
+ 120:	97 e0       	ldi	r25, 0x07	; 7
+ 122:	90 93 62 00 	sts	0x0062, r25
+ 126:	80 93 61 00 	sts	0x0061, r24
+ 12a:	05 c0       	rjmp	.+10     	; 0x136 <__stack+0x57>
+            }
+        }
+        break;
+
+    default:
+        IR_CAPT_FALL();                     // 立ち下がり駆動に変更(ICPの検出エッジをL)
+ 12c:	8e b5       	in	r24, 0x2e	; 46
+ 12e:	8f 7b       	andi	r24, 0xBF	; 191
+ 130:	8e bd       	out	0x2e, r24	; 46
+        PryoState = WAVE_FALL;
+ 132:	10 92 60 00 	sts	0x0060, r1
+        break;
+    }
+}
+ 136:	9f 91       	pop	r25
+ 138:	8f 91       	pop	r24
+ 13a:	2f 91       	pop	r18
+ 13c:	0f 90       	pop	r0
+ 13e:	0f be       	out	0x3f, r0	; 63
+ 140:	0f 90       	pop	r0
+ 142:	1f 90       	pop	r1
+ 144:	18 95       	reti
+
+00000146 <timer0_init>:
+/****************************************
+* タイマー0の初期化                    *
+****************************************/
+void timer0_init(void)
+{
+    TCCR0A =
+ 146:	10 be       	out	0x30, r1	; 48
+        (0<<COM0B1) |
+        (0<<COM0B0) |           /* 標準ポート動作 (OC0B切断) */
+        (0<<WGM01)  |
+        (0<<WGM00);             /* 標準動作 */
+
+    TCCR0B =
+ 148:	85 e0       	ldi	r24, 0x05	; 5
+ 14a:	83 bf       	out	0x33, r24	; 51
+        (0<<WGM02) |            /* 標準動作 */
+        (1<<CS02)  |            /* プリスケーラは 1/1024 */
+        (0<<CS01)  |
+        (1<<CS00);
+
+    TCNT0 = 0;              // タイマ0の初期値
+ 14c:	12 be       	out	0x32, r1	; 50
+    TIMSK |= _BV(TOIE0);    // タイマ0オーバーフローだけ割り込み許可
+ 14e:	89 b7       	in	r24, 0x39	; 57
+ 150:	82 60       	ori	r24, 0x02	; 2
+ 152:	89 bf       	out	0x39, r24	; 57
+}
+ 154:	08 95       	ret
+
+00000156 <timer1_init>:
+void timer1_init(void)
+{
+    //======================
+    // TCCR1設定
+    //======================
+    TCCR1A =            //
+ 156:	1f bc       	out	0x2f, r1	; 47
+        (0<<WGM10);     //  00  使わない
+
+    //======================
+    // TCCR1B 設定
+    //======================
+    TCCR1B =            //
+ 158:	85 ec       	ldi	r24, 0xC5	; 197
+ 15a:	8e bd       	out	0x2e, r24	; 46
+        (1<<CS10);      //
+
+    //======================
+    // カウンタ初期化
+    //======================
+    TCNT1 = 0x0000;
+ 15c:	1d bc       	out	0x2d, r1	; 45
+ 15e:	1c bc       	out	0x2c, r1	; 44
+    OCR1A = 0xFFFF;
+ 160:	8f ef       	ldi	r24, 0xFF	; 255
+ 162:	9f ef       	ldi	r25, 0xFF	; 255
+ 164:	9b bd       	out	0x2b, r25	; 43
+ 166:	8a bd       	out	0x2a, r24	; 42
+    OCR1B = 0xFFFF;
+ 168:	99 bd       	out	0x29, r25	; 41
+ 16a:	88 bd       	out	0x28, r24	; 40
+
+    //======================
+    //   外部割り込み設定
+    //======================
+    // 外部割り込み(未使用)
+    GIMSK = 0x00;
+ 16c:	1b be       	out	0x3b, r1	; 59
+    MCUCR = 0x00;
+ 16e:	15 be       	out	0x35, r1	; 53
+
+    // コンパレータ未使用
+    ACSR=0x80;
+ 170:	80 e8       	ldi	r24, 0x80	; 128
+ 172:	88 b9       	out	0x08, r24	; 8
+
+    // タイマー1キャプチャー割込許可
+    TIMSK |= (1<<ICF1);
+ 174:	89 b7       	in	r24, 0x39	; 57
+ 176:	88 60       	ori	r24, 0x08	; 8
+ 178:	89 bf       	out	0x39, r24	; 57
+}
+ 17a:	08 95       	ret
+
+0000017c <main>:
+int main(void)
+{
+
+    uint8_t i;
+
+    cli(); // 割り込み禁止
+ 17c:	f8 94       	cli
+
+    io_init();
+ 17e:	6d df       	rcall	.-294    	; 0x5a <io_init>
+ 180:	8a e5       	ldi	r24, 0x5A	; 90
+
+    // センサの起動を待つ
+    for(i=0; i < 90; i++)
+    {
+        LED_ON();
+ 182:	c1 98       	cbi	0x18, 1	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 184:	2f ef       	ldi	r18, 0xFF	; 255
+ 186:	34 e3       	ldi	r19, 0x34	; 52
+ 188:	4c e0       	ldi	r20, 0x0C	; 12
+ 18a:	21 50       	subi	r18, 0x01	; 1
+ 18c:	30 40       	sbci	r19, 0x00	; 0
+ 18e:	40 40       	sbci	r20, 0x00	; 0
+ 190:	e1 f7       	brne	.-8      	; 0x18a <main+0xe>
+ 192:	00 c0       	rjmp	.+0      	; 0x194 <main+0x18>
+ 194:	00 00       	nop
+        _delay_ms(500);
+        LED_OFF();
+ 196:	c1 9a       	sbi	0x18, 1	; 24
+ 198:	2f ef       	ldi	r18, 0xFF	; 255
+ 19a:	34 e3       	ldi	r19, 0x34	; 52
+ 19c:	4c e0       	ldi	r20, 0x0C	; 12
+ 19e:	21 50       	subi	r18, 0x01	; 1
+ 1a0:	30 40       	sbci	r19, 0x00	; 0
+ 1a2:	40 40       	sbci	r20, 0x00	; 0
+ 1a4:	e1 f7       	brne	.-8      	; 0x19e <main+0x22>
+ 1a6:	00 c0       	rjmp	.+0      	; 0x1a8 <main+0x2c>
+ 1a8:	00 00       	nop
+ 1aa:	81 50       	subi	r24, 0x01	; 1
+    cli(); // 割り込み禁止
+
+    io_init();
+
+    // センサの起動を待つ
+    for(i=0; i < 90; i++)
+ 1ac:	51 f7       	brne	.-44     	; 0x182 <main+0x6>
+        LED_OFF();
+        _delay_ms(500);
+    }
+
+    // LEDの表示で使用
+    timer0_init();
+ 1ae:	cb df       	rcall	.-106    	; 0x146 <timer0_init>
+
+    // 焦電赤外線センサで使用
+    timer1_init();
+ 1b0:	d2 df       	rcall	.-92     	; 0x156 <timer1_init>
+
+    IR_CAPT_FALL();     // 立ち下がり駆動に変更
+ 1b2:	8e b5       	in	r24, 0x2e	; 46
+ 1b4:	8f 7b       	andi	r24, 0xBF	; 191
+ 1b6:	8e bd       	out	0x2e, r24	; 46
+    IR_CAPT_CLEAR();    // キャプチャー割込要求クリア
+ 1b8:	88 b7       	in	r24, 0x38	; 56
+ 1ba:	88 60       	ori	r24, 0x08	; 8
+ 1bc:	88 bf       	out	0x38, r24	; 56
+    PryoState = WAVE_FALL;
+ 1be:	10 92 60 00 	sts	0x0060, r1
+    pryo_count = 0;     // 0秒
+ 1c2:	10 92 62 00 	sts	0x0062, r1
+ 1c6:	10 92 61 00 	sts	0x0061, r1
+
+    set_sleep_mode(SLEEP_MODE_IDLE);// パワーダウンモードを設定
+ 1ca:	85 b7       	in	r24, 0x35	; 53
+ 1cc:	8f 7a       	andi	r24, 0xAF	; 175
+ 1ce:	85 bf       	out	0x35, r24	; 53
+
+    sei();          // 全体割込許可
+ 1d0:	78 94       	sei
+
+    while (1)
+    {
+        sleep_mode();
+ 1d2:	85 b7       	in	r24, 0x35	; 53
+ 1d4:	80 62       	ori	r24, 0x20	; 32
+ 1d6:	85 bf       	out	0x35, r24	; 53
+ 1d8:	88 95       	sleep
+ 1da:	85 b7       	in	r24, 0x35	; 53
+ 1dc:	8f 7d       	andi	r24, 0xDF	; 223
+ 1de:	85 bf       	out	0x35, r24	; 53
+ 1e0:	f8 cf       	rjmp	.-16     	; 0x1d2 <main+0x56>
+
+000001e2 <_exit>:
+ 1e2:	f8 94       	cli
+
+000001e4 <__stop_program>:
+ 1e4:	ff cf       	rjmp	.-2      	; 0x1e4 <__stop_program>
