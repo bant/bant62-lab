@@ -72,33 +72,33 @@
 #define CHARLIE_8_B   PB2
 #define CHARLIE_9_B   PB3
 
-#define NONE      0
-#define HIGH      1
+#define NONE            0
+#define HIGH            1
 
-#define LEFT      0
-#define RIGHT       1
+#define LEFT            0
+#define RIGHT           1
 
-#define NUMBER_START  0
+#define NUMBER_START    0
 #define ALFABET_START   10
-#define HYPHEN      37
-#define BLANK       53
+#define HYPHEN          37
+#define BLANK           53
 
-#define LINE_1      1
-#define LINE_2      2
-#define LINE_3      3
-#define LINE_4      4
-#define LINE_5      5
-#define LINE_6      6
-#define LINE_7      7
-#define LINE_8      8
-#define LINE_9      9
+#define LINE_1          1
+#define LINE_2          2
+#define LINE_3          3
+#define LINE_4          4
+#define LINE_5          5
+#define LINE_6          6
+#define LINE_7          7
+#define LINE_8          8
+#define LINE_9          9
 
-#define LINE_SIZE   9
+#define LINE_SIZE       9
 
-#define NUMBER_SATRT  0
+#define NUMBER_SATRT    0
 #define ALFABET_START   10
-#define HYPHEN      37
-#define BLANK       53
+#define HYPHEN          37
+#define BLANK           53
 
 enum { S_NORMAL = 0, S_SEQUENCE };
 enum { S_L0 = 10, S_L1, S_L2 };
@@ -106,7 +106,7 @@ enum { S_L0 = 10, S_L1, S_L2 };
 /*****************************************
  *            グローバル変数定義         *
  *****************************************/
-const uint8_t eLINE[] __attribute__ ((progmem)) =
+const uint8_t eLINE[] PROGMEM =
 {
     LINE_1, LINE_2, LINE_3, LINE_4, LINE_5, LINE_6, LINE_7, LINE_8, LINE_9,  // 0 LINE8
     LINE_2, LINE_1, LINE_3, LINE_4, LINE_5, LINE_6, LINE_7, LINE_8, LINE_9,  // 1 LINE7
@@ -118,7 +118,7 @@ const uint8_t eLINE[] __attribute__ ((progmem)) =
     LINE_8, LINE_2, LINE_3, LINE_4, LINE_5, LINE_6, LINE_7, LINE_1, LINE_9   // 7 LINE1
 };
 
-const uint8_t eSEG[] __attribute__ ((progmem))  =
+const uint8_t eSEG[] PROGMEM =
 {
 //    .gfedcba
     0b00111111, //  0:0   => NUMBER_START : 0
@@ -353,7 +353,7 @@ void DigitOut( uint8_t digit,  uint8_t data )
 /*****************************************
  *  動作モード設定ジャンパの確認         *
  *****************************************/
-bool check_I2C(void)
+bool check_I2C( void )
 {
     PORTB |= (1 << PB4);       // ポートB4のプルアップ
     _delay_us(1000);
@@ -367,7 +367,7 @@ bool check_I2C(void)
 /*****************************************
  *  7セグ書き込み(書き込み位置付き)     *
  *****************************************/
-void led_write(uint8_t pos, uint8_t data)
+void led_write( uint8_t pos, uint8_t data )
 {
     if (data == '.')
     {
@@ -401,7 +401,7 @@ void led_write(uint8_t pos, uint8_t data)
 /*****************************************
  *  7セグ一文字書き込み                 *
  *****************************************/
-void led_putc(uint8_t data)
+void led_putc( uint8_t data )
 {
     uint8_t i;
 
@@ -427,7 +427,7 @@ void led_putc(uint8_t data)
 /*****************************************
  *  7セグ画面クリア                     *
  *****************************************/
-void led_clr(void)
+void led_clr( void )
 {
     uint8_t i;
 
@@ -440,7 +440,7 @@ void led_clr(void)
 /*****************************************
  *  7セグ画面シフト                     *
  *****************************************/
-void led_shift(uint8_t mode)
+void led_shift( uint8_t mode )
 {
     uint8_t i;
 
@@ -465,7 +465,7 @@ void led_shift(uint8_t mode)
 /*****************************************
  *  7セグ画面ローテート                 *
  *****************************************/
-void led_rotate(uint8_t mode)
+void led_rotate( uint8_t mode )
 {
     uint8_t i, tmp;
 
@@ -494,7 +494,7 @@ void led_rotate(uint8_t mode)
 /*****************************************
  *  タイマ0オーバーフロー割り込み処理    *
  *****************************************/
-ISR(TIMER0_OVF_vect)
+ISR( TIMER0_OVF_vect )
 {
     InitPort();
 
