@@ -2,14 +2,14 @@ EAGLE AutoRouter Statistics:
 
 Job           : C:/Documents and Settings/bant/My Documents/eagle/Google_Project/USB_Watt_Meter/USB_Watt_Meter.brd
 
-Start at      : 18:06:52 (2013/01/03)
-End at        : 18:06:52 (2013/01/03)
+Start at      : 09:05:22 (2013/01/21)
+End at        : 09:05:22 (2013/01/21)
 Elapsed time  : 00:00:00
 
-Signals       :    30   RoutingGrid: 50 mil  Layers: 1
-Connections   :    75   predefined:  75 ( 10 Vias )
+Signals       :    30   RoutingGrid: 50 mil  Layers: 2
+Connections   :    77   predefined:  77 ( 8 Vias )
 
-Router memory :   6290
+Router memory :   12920
 
 Passname          :     Route Optimize1 Optimize2 Optimize3 Optimize4
 
