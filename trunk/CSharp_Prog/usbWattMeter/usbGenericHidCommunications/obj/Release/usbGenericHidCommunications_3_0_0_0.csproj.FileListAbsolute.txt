@@ -1,0 +1,5 @@
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbGenericHidCommunications\bin\Release\usbGenericHidCommunications.dll
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbGenericHidCommunications\bin\Release\usbGenericHidCommunications.pdb
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbGenericHidCommunications\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbGenericHidCommunications\obj\Release\usbGenericHidCommunications.dll
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbGenericHidCommunications\obj\Release\usbGenericHidCommunications.pdb

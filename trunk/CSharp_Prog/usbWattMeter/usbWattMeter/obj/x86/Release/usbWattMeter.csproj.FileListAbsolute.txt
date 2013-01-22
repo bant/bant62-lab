@@ -1,0 +1,12 @@
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\bin\Release\usbWattMeter.exe
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\bin\Release\usbWattMeter.pdb
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\bin\Release\usbGenericHidCommunications.dll
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\bin\Release\usbGenericHidCommunications.pdb
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Release\usbWattMeter.MainForm.resources
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Release\usbWattMeter.Properties.Resources.resources
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Release\usbWattMeter.exe
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Release\usbWattMeter.pdb
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\bin\Release\usbWattMeter.exe.config
