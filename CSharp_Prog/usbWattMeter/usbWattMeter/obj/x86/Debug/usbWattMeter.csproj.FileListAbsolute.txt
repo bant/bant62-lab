@@ -1,0 +1,35 @@
+C:\Documents and Settings\bant\Local Settings\Application Data\Temporary Projects\usbWattMeter\bin\Debug\usbWattMeter.exe
+C:\Documents and Settings\bant\Local Settings\Application Data\Temporary Projects\usbWattMeter\bin\Debug\usbWattMeter.pdb
+C:\Documents and Settings\bant\Local Settings\Application Data\Temporary Projects\usbWattMeter\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\bant\Local Settings\Application Data\Temporary Projects\usbWattMeter\obj\x86\Debug\usbWattMeter.MainForm.resources
+C:\Documents and Settings\bant\Local Settings\Application Data\Temporary Projects\usbWattMeter\obj\x86\Debug\usbWattMeter.Properties.Resources.resources
+C:\Documents and Settings\bant\Local Settings\Application Data\Temporary Projects\usbWattMeter\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\bant\Local Settings\Application Data\Temporary Projects\usbWattMeter\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\bant\Local Settings\Application Data\Temporary Projects\usbWattMeter\obj\x86\Debug\usbWattMeter.exe
+C:\Documents and Settings\bant\Local Settings\Application Data\Temporary Projects\usbWattMeter\obj\x86\Debug\usbWattMeter.pdb
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Debug\usbWattMeter.exe
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Debug\usbWattMeter.pdb
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\bin\Debug\usbWattMeter.exe
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\bin\Debug\usbWattMeter.pdb
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Debug\usbWattMeter.MainForm.resources
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Debug\usbWattMeter.Properties.Resources.resources
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\bin\Debug\usbGenericHidCommunications.dll
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\bin\Debug\usbGenericHidCommunications.pdb
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\bin\Debug\usbWattMeter.exe.config
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbWattMeter\obj\x86\Debug\usbWattMeter.ConfigForm.resources
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\bin\Debug\usbWattMeter.exe.config
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\obj\x86\Debug\usbWattMeter.exe
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\obj\x86\Debug\usbWattMeter.pdb
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\bin\Debug\usbWattMeter.exe
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\bin\Debug\usbWattMeter.pdb
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\bin\Debug\usbGenericHidCommunications.dll
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\bin\Debug\usbGenericHidCommunications.pdb
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\obj\x86\Debug\usbWattMeter.ConfigForm.resources
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\obj\x86\Debug\usbWattMeter.MainForm.resources
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\obj\x86\Debug\usbWattMeter.Properties.Resources.resources
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\bant\デスクトップ\新しいフォルダ (5)\CSharp_Prog\usbWattMeter\usbWattMeter\obj\x86\Debug\GenerateResource.write.1.tlog

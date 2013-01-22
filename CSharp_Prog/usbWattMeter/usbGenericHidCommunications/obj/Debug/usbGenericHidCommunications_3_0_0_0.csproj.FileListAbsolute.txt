@@ -1,0 +1,10 @@
+C:\USB_Generic_HID_reference_application_3_0_0_0\USB Generic HID reference application 3_0_0_0\usbGenericHidCommunications\bin\Debug\usbGenericHidCommunications.dll
+C:\USB_Generic_HID_reference_application_3_0_0_0\USB Generic HID reference application 3_0_0_0\usbGenericHidCommunications\bin\Debug\usbGenericHidCommunications.pdb
+C:\USB_Generic_HID_reference_application_3_0_0_0\USB Generic HID reference application 3_0_0_0\usbGenericHidCommunications\obj\Debug\ResolveAssemblyReference.cache
+C:\USB_Generic_HID_reference_application_3_0_0_0\USB Generic HID reference application 3_0_0_0\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications.dll
+C:\USB_Generic_HID_reference_application_3_0_0_0\USB Generic HID reference application 3_0_0_0\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications.pdb
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbGenericHidCommunications\bin\Debug\usbGenericHidCommunications.dll
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbGenericHidCommunications\bin\Debug\usbGenericHidCommunications.pdb
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbGenericHidCommunications\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications.dll
+C:\Documents and Settings\bant\My Documents\Visual Studio 2010\Projects\usbWattMeter\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications.pdb
