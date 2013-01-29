@@ -6,7 +6,7 @@
 // Notes        :
 // Target MCU   : PIC 18F14K50
 // Tool Chain   : MPLAB C18 Ver 3.43 with MPLAB IDE v8.88
-// Flame Work   : Microchip Application Libraries v2012-07-18
+// Frame Work   : Microchip Application Libraries v2012-07-18
 //
 // Revision History:
 // When         Who         Description of change
