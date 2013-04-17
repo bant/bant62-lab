@@ -179,11 +179,12 @@ uint8_t RTC8564_adjust( RTC_TIME *time )
 
     if (time->year >= 2100)
     {
-        data[7] = dec2bcd(time->year - 2100);    // 年
+        data[7] = dec2bcd(time->year - 2100);   // 年
+		data[6] |= 0x80;						// 世紀フラッグセット
     }
     else
     {
-        data[7] = dec2bcd(time->year - 2000);    // 年
+        data[7] = dec2bcd(time->year - 2000);   // 年
     }
 
     status = TinyI2C_write_data(I2C_ADDR_RTC8564, data, sizeof(data), SEND_STOP);
@@ -228,7 +229,7 @@ uint8_t RTC8564_now( RTC_TIME *time )
     time->wday = bcd2dec( data[4] & 0x07 );
     time->month =bcd2dec( data[5] & 0x1F );
 
-    if ( data[6] & 0x80 ) /* 世紀フラグ */
+    if ( data[5] & 0x80 ) /* 世紀フラグ */
     {
         time->year = bcd2dec( data[6] ) + 2100;
     }
