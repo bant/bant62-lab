@@ -5,7 +5,7 @@
 // Revision     : 0.1
 // Notes        :
 // Target MCU   : AVR ATtiny series
-// Tool Chain   :
+// Tool Chain   : AVR toolchain Ver3.4.1.1195
 //
 // Revision History:
 // When         Who         Description of change
@@ -129,7 +129,7 @@ uint8_t I2C_24LCXXX_page_write( uint8_t slave_7bit_addr, uint16_t mem_addr, uint
 //       uint16_t mem_addr       : 読み込むメモリアドレス
 //       uint8_t *data           : 読み込むデータ
 //       int size                : 読み込むデータサイズ(バイト単位)
-// 戻値: 0=正常終了　0xffはデータオーバーフロー、それ以外I2C通信エラー
+// 戻値: 0=正常終了　それ以外I2C通信エラー
 //========================================================================
 uint8_t I2C_24LCXXX_read( uint8_t slave_7bit_addr, uint16_t mem_addr, void* data, int size )
 {
