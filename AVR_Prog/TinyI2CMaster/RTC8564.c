@@ -370,7 +370,7 @@ uint8_t RTC8564_setAlarm( ALARM_TIME *alarm )
     }
 
     // –ˆİ’è
-    data[2] = dec2bcd(alarm->hour) & 0x7F;
+    data[2] = dec2bcd(alarm->hour & 0x7F);
     if(alarm->hour & 0x80)
     {
         data[2] |= 0x80;
