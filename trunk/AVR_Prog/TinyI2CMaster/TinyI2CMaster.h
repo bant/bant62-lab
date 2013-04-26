@@ -2,7 +2,7 @@
 // File Name    : TinyI2CMaster.h
 //
 // Title        : ATtiny用 USIを使ったI2Cドライバ・ヘッダファイル
-// Revision     : 0.1
+// Revision     : 0.11
 // Notes        :
 // Target MCU   : AVR ATtiny series
 // Tool Chain   : AVR toolchain Ver3.4.1.1195
@@ -12,6 +12,7 @@
 // -----------  ----------- -----------------------
 // ????/??/??   がた老さん  soft_I2C.c開発完了
 // 2013/04/10   ばんと      修正完了
+// 2013/04/26   ばんと      レジスタ操作関数追加&変更
 //------------------------------------------------------------------------
 // This code is distributed under Apache License 2.0 License
 //		which can be found at http://www.apache.org/licenses/
@@ -41,8 +42,7 @@
 
 #define NO_SEND_STOP			0
 #define SEND_STOP				1
-#define CLEAR_BIT				0
-#define SET_BIT					1
+
 
 // Device dependant defines ADDED BACK IN FROM ORIGINAL ATMEL .H
 
@@ -92,6 +92,7 @@ uint8_t TinyI2C_read_data(uint8_t slave_7bit_addr, void* data, int size, uint8_t
 uint8_t TinyI2C_write_data(uint8_t slave_7bit_addr, void* data, int size, uint8_t send_stop);
 uint8_t TinyI2C_readReg( uint8_t slave_7bit_addr, uint8_t mem_addr, uint8_t *data );
 uint8_t TinyI2C_masksetRegBit( uint8_t slave_7bit_addr, uint8_t mem_addr, uint8_t mask, uint8_t set_bit );
-uint8_t TinyI2C_setRegBit( uint8_t slave_7bit_addr, uint8_t mem_addr, uint8_t set_bit, uint8_t set_clear );
+uint8_t TinyI2C_setRegBit( uint8_t slave_7bit_addr, uint8_t mem_addr, uint8_t set_bit );
+uint8_t TinyI2C_clearRegBit( uint8_t slave_7bit_addr, uint8_t mem_addr, uint8_t clear_bit );
 
 #endif /* TINYI2CMASTER_H_ */

@@ -2,7 +2,7 @@
 // File Name    : RTC8564.c
 //
 // Title        : Seiko Epson RTC-8564 ドライバ
-// Revision     : 0.1
+// Revision     : 0.11
 // Notes        :
 // Target MCU   : AVR ATtiny series
 // Tool Chain   : AVR toolchain Ver3.4.1.1195
@@ -12,6 +12,7 @@
 // -----------  ----------- -----------------------
 // 2013/04/13   ばんと      製作開始
 // 2013/04/14   ばんと      Ver0.1製作完了
+// 2013/04/26   ばんと      レジスタ操作関数追加&変更
 //------------------------------------------------------------------------
 // This code is distributed under Apache License 2.0 License
 //		which can be found at http://www.apache.org/licenses/
@@ -258,14 +259,14 @@ uint8_t RTC8564_setTimer( uint8_t cycle, uint8_t int_out, enum RTC_TIMER_TIMING 
     uint8_t status;
 
     // タイマ割り込み停止(TE = 0)
-    status = TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x0E, _BV(7), CLEAR_BIT );
+    status = TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x0E, _BV(7) );
     if(status != TINYI2C_NO_ERROR)
     {
         return status;
     }
 
     // 割り込み解除( TIE=0, TF=0 )
-    status = TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x01, _BV(2) | _BV(0), CLEAR_BIT );
+    status = TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x01, _BV(2) | _BV(0) );
     if(status != TINYI2C_NO_ERROR)
     {
         return status;
@@ -274,23 +275,23 @@ uint8_t RTC8564_setTimer( uint8_t cycle, uint8_t int_out, enum RTC_TIMER_TIMING 
     if ( cycle )
     {
         // 繰り返し割り込み( TI/TP = 1 )
-        status = TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x01, _BV(4), SET_BIT );
+        status = TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x01, _BV(4) );
     }
     else
     {
         // 一度きりの割り込み( TI/TP = 0 )
-        status = TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x01, _BV(4), CLEAR_BIT );
+        status = TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x01, _BV(4) );
     }
 
     if ( int_out )
     {
         // /INT "LOW"レベル割り込み出力許可( TIE = 1 )
-        status = TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x01, _BV(0), SET_BIT );
+        status = TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x01, _BV(0) );
     }
     else
     {
         // /INT "LOW"レベル割り込み出力不許可( TIE = 0 )
-        status = TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x01, _BV(0), CLEAR_BIT );
+        status = TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x01, _BV(0) );
     }
     if(status != TINYI2C_NO_ERROR)
     {
@@ -313,7 +314,7 @@ uint8_t RTC8564_setTimer( uint8_t cycle, uint8_t int_out, enum RTC_TIMER_TIMING 
         return status;
     }
 
-    return TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x0E, _BV(7), SET_BIT );    // タイマ割り込み許可(TE = 1)
+    return TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x0E, _BV(7) );    // タイマ割り込み許可(TE = 1)
 }
 
 //========================================================================
@@ -326,7 +327,7 @@ uint8_t RTC8564_setClkOut( enum  RTC_CLKOUT_FREQ clkout )
 {
     if( clkout == FREQ_0 )
     {
-        return TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x0D, _BV(7), CLEAR_BIT );
+        return TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x0D, _BV(7) );
     }
     else
     {
@@ -358,7 +359,7 @@ uint8_t RTC8564_setAlarm( ALARM_TIME *alarm )
     }
 
     // 割り込み解除( AIE=0, AF=0 )
-    status = TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x01, _BV(3) | _BV(1), CLEAR_BIT );
+    status = TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x01, _BV(3) | _BV(1) );
     if(status != TINYI2C_NO_ERROR)
     {
         return status;
@@ -400,7 +401,7 @@ uint8_t RTC8564_setAlarm( ALARM_TIME *alarm )
     }
 
     // 割り込み許可(AIE=1)
-    return TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x01, _BV(1), SET_BIT );
+    return TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x01, _BV(1) );
 }
 
 //========================================================================
