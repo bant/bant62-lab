@@ -2,7 +2,7 @@
 // File Name    : TinyI2CMaster.c
 //
 // Title        : ATtiny用 USIを使ったI2Cドライバ
-// Revision     : 0.1
+// Revision     : 0.11
 // Notes        :
 // Target MCU   : AVR ATtiny series
 // Tool Chain   :
@@ -12,6 +12,7 @@
 // -----------  ----------- -----------------------
 // ????/??/??   がた老さん  soft_I2C.c開発完了
 // 2013/04/10   ばんと      修正完了
+// 2013/04/26   ばんと      レジスタ操作関数追加&変更
 //------------------------------------------------------------------------
 // This code is distributed under Apache License 2.0 License
 //		which can be found at http://www.apache.org/licenses/
@@ -405,10 +406,9 @@ uint8_t TinyI2C_masksetRegBit( uint8_t slave_7bit_addr, uint8_t mem_addr, uint8_
 // 引数: uint8_t slave_7bit_addr : ターゲットの7ビットアドレス
 //       uint8_t mem_addr        : レジスタのメモリアドレス
 //       uint8_t set_bit         : 設定するビットの位置
-//       uint8_t set_clear       : 0ならビットクリア 非0ならビットセット
 // 戻値: 0=正常終了 それ以外I2C通信エラー
 //========================================================================
-uint8_t TinyI2C_setRegBit( uint8_t slave_7bit_addr, uint8_t mem_addr, uint8_t set_bit, uint8_t set_clear )
+uint8_t TinyI2C_setRegBit( uint8_t slave_7bit_addr, uint8_t mem_addr, uint8_t set_bit )
 {
     uint8_t data[2];
     uint8_t status;
@@ -420,17 +420,37 @@ uint8_t TinyI2C_setRegBit( uint8_t slave_7bit_addr, uint8_t mem_addr, uint8_t se
         return status;
     }
 
-    if (set_clear == 0)
+    data[1] |= set_bit;
+
+    return TinyI2C_write_data( slave_7bit_addr, data, 2, SEND_STOP );
+}
+
+//========================================================================
+//  特定ビットクリア
+//------------------------------------------------------------------------
+// 引数: uint8_t slave_7bit_addr : ターゲットの7ビットアドレス
+//       uint8_t mem_addr        : レジスタのメモリアドレス
+//       uint8_t clear_bit       : クリアするビットの位置
+// 戻値: 0=正常終了 それ以外I2C通信エラー
+//========================================================================
+uint8_t TinyI2C_clearRegBit( uint8_t slave_7bit_addr, uint8_t mem_addr, uint8_t clear_bit )
+{
+    uint8_t data[2];
+    uint8_t status;
+
+    data[0] = mem_addr;
+    status = TinyI2C_readReg( slave_7bit_addr, data[0], &data[1] );
+    if(status != TINYI2C_NO_ERROR)
     {
-        data[1] &= ~set_bit;
-    }
-    else
-    {
-        data[1] |= set_bit;
+        return status;
     }
 
-    return TinyI2C_write_data(slave_7bit_addr, data, 2, SEND_STOP);
+    data[1] &= ~clear_bit;
+
+    return TinyI2C_write_data( slave_7bit_addr, data, 2, SEND_STOP );
 }
+
+
 #endif  /* USE_READ_WRITE_REGISTER */
 #endif  /* USE_READ_WRITE_REPEAT */
 

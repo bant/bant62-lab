@@ -60,10 +60,8 @@ uint8_t RTC8564_setAlarm( ALARM_TIME *alarm );
 uint8_t RTC8564_getAlarm( ALARM_TIME *alarm );
 uint8_t RTC8564_stopAlarm( void );
 
-
-#define RTC8564_start() TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x00, _BV(7) | _BV(5) | _BV(3), CLEAR_BIT )
+#define RTC8564_start() TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x00, _BV(7) | _BV(5) | _BV(3) )
 #define RTC8564_stop() TinyI2C_masksetRegBit( I2C_ADDR_RTC8564, 0x00, _BV(7) | _BV(5) | _BV(3), _BV(5) )
-
-#define RTC8564_stopTimer()	TinyI2C_setRegBit( I2C_ADDR_RTC8564, 0x0E, _BV(7), CLEAR_BIT )
+#define RTC8564_stopTimer()	TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x0E, _BV(7) )
 
 #endif	/*  #ifndef */
