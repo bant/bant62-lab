@@ -2,7 +2,7 @@
 // File Name    : RTC8564.cpp
 //
 // Title        : RTC8564ライブラリ・ソース
-// Revision     : 0.2
+// Revision     : 1.1
 // Notes        : 
 //
 // This code is distributed under the GNU Public License
@@ -11,8 +11,8 @@
 // Revision History:
 // When         Who         Description of change
 // -----------  ----------- -----------------------
-// 2013/4/27    ばんと      ver0.1 作成
-// 2013/5/6     ばんと      TIMER & ALARMのバク修正 
+// 2013/4/27    ばんと      ver1.0 作成
+// 2013/5/6     ばんと      TIMER & ALARMのバク修正 Ver1.1
 //==================================================================
 
 #if ARDUINO < 100
