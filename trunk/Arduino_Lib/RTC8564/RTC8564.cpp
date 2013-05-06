@@ -1,3 +1,20 @@
+//==================================================================
+// File Name    : RTC8564.cpp
+//
+// Title        : RTC8564ライブラリ・ソース
+// Revision     : 0.2
+// Notes        : 
+//
+// This code is distributed under the GNU Public License
+//		which can be found at http://www.gnu.org/licenses/gpl.txt
+//
+// Revision History:
+// When         Who         Description of change
+// -----------  ----------- -----------------------
+// 2013/4/27    ばんと      ver0.1 作成
+// 2013/5/6     ばんと      TIMER & ALARMのバク修正 
+//==================================================================
+
 #if ARDUINO < 100
 #include <WProgram.h>
 #else
@@ -272,11 +289,11 @@ bool RTC8564::now(RTC_TIME *time)
 //------------------------------------------------------------------------
 // 引数:    RTC_TIMER_TIMING sclk　: タイマ周波数
 //          uint8_t count   : タイマカウント
-//          uint8_t cycle   : 非0なら繰り返し
-//          uint8_t int_out : 非0の時  /INT "LOW"レベル割り込み出力許可
+//          bool cycle      : trueなら繰り返し
+//          boolint_out     : trueなら /INT "LOW"レベル割り込み出力許可
 // 戻値: なし
 //========================================================================
-void RTC8564::setTimer( RTC_TIMER_TIMING sclk, uint8_t count,uint8_t cycle = 0, uint8_t int_out = 1 )
+void RTC8564::setTimer( RTC_TIMER_TIMING sclk, uint8_t count,bool cycle = false, bool int_out = true )
 {
     uint8_t data[2];
     uint8_t status;
@@ -327,6 +344,11 @@ void RTC8564::stopTimer()
     clearRegBit( 0x01, _BV(2) | _BV(0) );
 }
 
+void RTC8564::clearTimer()
+{
+	clearRegBit(0x01, _BV(2) );		// 2013/5/6 修正
+}
+
 bool RTC8564::checkTimerFlag()
 {
     uint8_t data;
@@ -335,8 +357,6 @@ bool RTC8564::checkTimerFlag()
     {
         if( data & _BV(2) )
         {
-            /* フラグをクリアしておく*/
-            clearRegBit(0x01, _BV(2) );
             return true;
         }
     }
@@ -349,7 +369,7 @@ bool RTC8564::checkTimerFlag()
 // 引数: ALARM_TIME *alarm : アラームの設定データ
 // 戻値: なし
 //========================================================================
-void RTC8564::setAlarm( ALARM_TIME alarm, uint8_t int_out = 1 )
+void RTC8564::setAlarm( ALARM_TIME alarm, bool int_out = true )
 {
     uint8_t data[4];
 
@@ -421,6 +441,20 @@ void RTC8564::stopAlarm()
 {
     // 割り込み解除( AIE=0, AF=0 )
     clearRegBit( 0x01, _BV(3) | _BV(1) );
+
+    // アラーム割り込み全停止(AE = 1)
+    beginTransmission(RTC8564_SLAVE_ADRS);
+    SEND(0x09);                 // Minute Alarmレジスタ・アドレス
+    SEND(0x80);                 // Minute Alarm (AE=1)
+    SEND(0x80);                 // Hour Alarm (AE=1)
+    SEND(0x80);                 // Day Alarm (AE=1)
+    SEND(0x80);                 // Week Day Alarm (AE=1)
+    endTransmission();
+}
+
+void RTC8564::clearAlarm()
+{
+	clearRegBit(0x01, _BV(3) );
 }
 
 bool RTC8564::checkAlarmFlag()
@@ -431,13 +465,12 @@ bool RTC8564::checkAlarmFlag()
     {
         if( data & _BV(3) )     // AFフラッグをチェック
         {
-            /* フラグをクリアしておく*/
-            clearRegBit(0x01, _BV(3) );
             return true;
         }
     }
     return false;
 }
+
 
 void RTC8564::setClkOut( RTC_CLKOUT_FREQ clkout )
 {
