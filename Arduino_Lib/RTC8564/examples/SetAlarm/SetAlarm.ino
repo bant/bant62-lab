@@ -4,10 +4,18 @@
 RTC8564 RTC;
 ALARM_TIME alarm;
 RTC_TIME rtc_time;
+bool fWakeUp;
 const char* dayofweek[] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+
+void walkeup()
+{
+  fWakeUp = true;
+}
 
 void setup()
 {
+  fWakeUp = false;
+
   Serial.begin(9600);
   RTC.begin();
   //// アラーム設定:毎時25分、/INTロー割り込みあり
@@ -15,14 +23,17 @@ void setup()
   //alarm.hour = 0xFF;              // 使用しないのなら0xFFに設定
   //alarm.day = 0xFF;               //           〃
   //alarm.wday = 0xFF;              //           〃
-  //RTC.setAlarm( alarm, 1 );
+  //RTC.setAlarm( alarm, true );
 
   // アラーム設定:23時15分、/INTロー割り込みあり
-  alarm.min = 40;
+  alarm.min = 15;
   alarm.hour = 23;
   alarm.day = 0xFF;                 // 使用しないのなら0xFFに設定
   alarm.wday = 0xFF;                //           〃
-  RTC.setAlarm( alarm, 1 );
+  RTC.setAlarm( alarm, true );
+
+  // /INT端子をD2に接続する
+  attachInterrupt(0, walkeup, FALLING);
 }
 
 void loop()
@@ -43,11 +54,16 @@ void loop()
     Serial.print(buf);
   }
 
-  /* /INTを接続してないのならフラグを毎回読む*/
-  if(RTC.checkAlarmFlag())
+  if (fWakeUp)
   {
+    fWakeUp = false;
     Serial.println("WakeUp Alarm!!");
+
+    // /INTはローになりっぱなし
+    // 次回のアラームのためにアラームをクリア
+    RTC.clearAlarm();
   }
+
 
   delay(1000);
 }

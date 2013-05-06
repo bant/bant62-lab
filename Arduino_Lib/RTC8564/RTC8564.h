@@ -1,3 +1,20 @@
+//==================================================================
+// File Name    : RTC8564.h
+//
+// Title        : RTC8564ライブラリ・ヘッダ
+// Revision     : 0.2
+// Notes        : 
+//
+// This code is distributed under the GNU Public License
+//		which can be found at http://www.gnu.org/licenses/gpl.txt
+//
+// Revision History:
+// When         Who         Description of change
+// -----------  ----------- -----------------------
+// 2013/4/27    ばんと      ver0.1 作成
+// 2013/5/6     ばんと      TIMER & ALARMのバク修正 
+//==================================================================
+
 #ifndef __RTC8564_H__
 #define __RTC8564_H__
 
@@ -35,17 +52,19 @@ public:
     ~RTC8564();     // destructor
 
     void begin();
-	void adjust(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, uint8_t sec);
+    void adjust(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, uint8_t sec);
     void adjust(RTC_TIME time);
     bool now(RTC_TIME *time);
     bool isRunning();
     void setClkOut( RTC_CLKOUT_FREQ clkout );
-    void setTimer( RTC_TIMER_TIMING sclk, uint8_t count,uint8_t cycle, uint8_t int_out);
+    void setTimer( RTC_TIMER_TIMING sclk, uint8_t count,bool cycle, bool int_out);
     void stopTimer();
-    bool checkTimerFlag();
-    void setAlarm( ALARM_TIME alarm, uint8_t int_out );
+    void clearTimer();
+	bool checkTimerFlag();
+    void setAlarm( ALARM_TIME alarm, bool int_out );
     void stopAlarm();
-    bool checkAlarmFlag();
+    void clearAlarm();
+	bool checkAlarmFlag();
 protected:
     int getWeekday( int nYear, int nMonth, int nDay );
     uint8_t dec2bcd(uint8_t d);
