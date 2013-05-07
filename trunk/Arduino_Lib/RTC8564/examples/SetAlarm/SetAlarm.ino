@@ -18,12 +18,6 @@ void setup()
 
   Serial.begin(9600);
   RTC.begin();
-  //// アラーム設定:毎時25分、/INTロー割り込みあり
-  //alarm.min = 25;
-  //alarm.hour = 0xFF;              // 使用しないのなら0xFFに設定
-  //alarm.day = 0xFF;               //           〃
-  //alarm.wday = 0xFF;              //           〃
-  //RTC.setAlarm( alarm, true );
 
   // アラーム設定:23時15分、/INTロー割り込みあり
   alarm.min = 15;
@@ -63,7 +57,5 @@ void loop()
     // 次回のアラームのためにアラームをクリア
     RTC.clearAlarm();
   }
-
-
   delay(1000);
 }
