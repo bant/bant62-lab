@@ -2,7 +2,7 @@
 // File Name    : RTC8564.c
 //
 // Title        : Seiko Epson RTC-8564 ドライバ
-// Revision     : 0.11
+// Revision     : 0.2
 // Notes        :
 // Target MCU   : AVR ATtiny series
 // Tool Chain   : AVR toolchain Ver3.4.1.1195
@@ -13,6 +13,7 @@
 // 2013/04/13   ばんと      製作開始
 // 2013/04/14   ばんと      Ver0.1製作完了
 // 2013/04/26   ばんと      レジスタ操作関数追加&変更
+// 2013/05/07   ばんと      TIMER & ALARMのバク修正 Ver0.2
 //------------------------------------------------------------------------
 // This code is distributed under Apache License 2.0 License
 //		which can be found at http://www.apache.org/licenses/
@@ -158,7 +159,7 @@ uint8_t RTC8564_backup_return( void )
 // 引数: RTC_TIME *time: 設定する日時データ
 // 戻値: 0=正常終了 それ以外I2C通信エラー
 //========================================================================
-uint8_t RTC8564_adjust( RTC_TIME *time )
+uint8_t RTC8564_adjust( const RTC_TIME *time )
 {
     uint8_t data[8];
     uint8_t status;
@@ -253,7 +254,7 @@ uint8_t RTC8564_now( RTC_TIME *time )
 //       uint8_t count : カウント値の指定(1-255)
 // 戻値: 0=正常終了 それ以外I2C通信エラー
 //========================================================================
-uint8_t RTC8564_setTimer( uint8_t cycle, uint8_t int_out, enum RTC_TIMER_TIMING sclk, uint8_t count )
+uint8_t RTC8564_setTimer( enum RTC_TIMER_TIMING sclk, uint8_t count, uint8_t cycle, uint8_t int_out )
 {
     uint8_t data[2];
     uint8_t status;
@@ -318,21 +319,36 @@ uint8_t RTC8564_setTimer( uint8_t cycle, uint8_t int_out, enum RTC_TIMER_TIMING 
 }
 
 //========================================================================
-//  CLKOUTの設定
+//  タイマストップ
 //------------------------------------------------------------------------
-// 引数: enum  RTC_CLKOUT_FREQ clkout: CLKOUTの周波数
+// 引数: なし
 // 戻値: 0=正常終了 それ以外I2C通信エラー
 //========================================================================
-uint8_t RTC8564_setClkOut( enum  RTC_CLKOUT_FREQ clkout )
+uint8_t RTC8564_stopTimer( void )
 {
-    if( clkout == FREQ_0 )
+    uint8_t status;
+
+	// タイマ割り込み停止(TE = 0)
+	status = TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x0E, _BV(7) );
+    if(status != TINYI2C_NO_ERROR)
     {
-        return TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x0D, _BV(7) );
-    }
-    else
-    {
-        return TinyI2C_masksetRegBit( I2C_ADDR_RTC8564, 0x0D, _BV(7) | _BV(1) | _BV(0), _BV(7) | clkout );
-    }
+		return status;
+	}
+
+	// 割り込み解除およびフラッグクリア( TIE=0, TF=0 )
+	return TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x01, _BV(2) | _BV(0) );
+
+}
+
+//========================================================================
+//  タイマクリア
+//------------------------------------------------------------------------
+// 引数: なし
+// 戻値: 0=正常終了 それ以外I2C通信エラー
+//========================================================================
+uint8_t RTC8564_clearTimer( void )
+{
+	return TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x01, _BV(2) );
 }
 
 //========================================================================
@@ -463,9 +479,16 @@ uint8_t RTC8564_getAlarm( ALARM_TIME *alarm )
 //========================================================================
 uint8_t RTC8564_stopAlarm( void )
 {
-    uint8_t data[2];
+    uint8_t data[5];
     uint8_t status;
     ALARM_TIME alarm;
+
+	// 割り込み解除( AIE=0, AF=0 )
+	status = TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x01, _BV(3) | _BV(1) );
+    if(status != TINYI2C_NO_ERROR)
+    {
+		return status;
+	}
 
     status = RTC8564_getAlarm( &alarm );
     if(status != TINYI2C_NO_ERROR)
@@ -480,6 +503,35 @@ uint8_t RTC8564_stopAlarm( void )
     data[3] = dec2bcd(alarm.day  & 0x7F) | 0x80;         // Day Alarm (AE=1)
     data[4] = dec2bcd(alarm.wday & 0x7F) | 0x80;         // Week Day Alarm (AE=1)
     return TinyI2C_write_data(I2C_ADDR_RTC8564, data, 5, SEND_STOP);
+}
+
+//========================================================================
+//  アラームクリア
+//------------------------------------------------------------------------
+// 引数: なし
+// 戻値: 0=正常終了 それ以外I2C通信エラー
+//========================================================================
+uint8_t RTC8564_clearAlarm( void )
+{
+	return TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x01, _BV(3) );
+}
+
+//========================================================================
+//  CLKOUTの設定
+//------------------------------------------------------------------------
+// 引数: enum  RTC_CLKOUT_FREQ clkout: CLKOUTの周波数
+// 戻値: 0=正常終了 それ以外I2C通信エラー
+//========================================================================
+uint8_t RTC8564_setClkOut( enum  RTC_CLKOUT_FREQ clkout )
+{
+    if( clkout == FREQ_0 )
+    {
+        return TinyI2C_clearRegBit( I2C_ADDR_RTC8564, 0x0D, _BV(7) );
+    }
+    else
+    {
+        return TinyI2C_masksetRegBit( I2C_ADDR_RTC8564, 0x0D, _BV(7) | _BV(1) | _BV(0), _BV(7) | clkout );
+    }
 }
 
 /* =====================================================[ここまでソース] */
