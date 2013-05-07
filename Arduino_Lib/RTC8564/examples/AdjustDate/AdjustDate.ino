@@ -20,7 +20,7 @@ void setup()
   RTC.adjust( rtc_time );
 
 //  これでもOK
-//  RTC.adjust( 2013, 4, 24, 0, 0, 0 );
+//  RTC.adjust( 2013, 4, 27, 0, 0, 0 );
 }
 
 void loop()
