@@ -1,0 +1,33 @@
+Partlist
+
+Exported from HC-SR04_Sensor.sch at 14/10/12 9:20
+
+EAGLE Version 5.12.0 Copyright (c) 1988-2011 CadSoft
+
+Part     Value          Device          Package      Library     Sheet
+
+BAT1     BH311P         BH311P          BH311P       densikit    1
+BAT2     BH311P         BH311P          BH311P       densikit    1
+C1       10uF           CCAP6.5         CCAP_6.5     MyLib       1
+C2       0.1uF          CAPDIP_2        CAP_DIP_2    MyLib       1
+C3       22u            CCAP6.5         CCAP_6.5     MyLib       1
+C4       47u            CCAP6.5         CCAP_6.5     MyLib       1
+CN2      AVR-ISP-6NS    AVR-ISP-6NS     2X3-NS       atmel       1
+HC-SR04  CN1            CON-S4-1        CON-S4-1     bant        1
+IC1      HT7750A        HT7750A'2'      TO92_TRI_2   keinSoft-01 1
+L1       100u           L-US6000-XXX-RC 6000-XXXX-RC rcl         1
+LCD1     SC802B         SC802B          SC802B       bant2       1
+MP1      MOUNT-PAD2.1   MOUNT-PAD2.1    PAD-2.1      MyLib       1
+MP2      MOUNT-PAD2.1   MOUNT-PAD2.1    PAD-2.1      MyLib       1
+MP3      MOUNT-PAD2.1   MOUNT-PAD2.1    PAD-2.1      MyLib       1
+MP4      MOUNT-PAD2.1   MOUNT-PAD2.1    PAD-2.1      MyLib       1
+MPU1     ATTINY2313V    TINY2313-*P*    DIL20        atmel       1
+Q1       2SA1015        2SA1015         TO92         bant2       1
+R1       4K7            R0.125W_3P      R_0.125W_3   MyLib       1
+R2       4K7            R0.125W_3P      R_0.125W_3   MyLib       1
+R3       10K            R0.125W_3P      R_0.125W_3   MyLib       1
+SKD1     1S10           1S10            R-1          keinSoft-01 1
+SW1      TACT-SW        TACT-SW         B3F-10X      MyLib       1
+SW2      SLIDESW-3S     SLIDESW-3S      DS-3         MyLib       1
+VR1      10K            POTMIDDLE       POT_MIDDLE   MyLib       1
+X1       8MHz           CERALOCK        CSTLS        MyLib       1
